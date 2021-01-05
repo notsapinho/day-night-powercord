@@ -24,7 +24,7 @@ module.exports = class Settings extends (
                     note="Change the time check rate."
                     onMarkerRender={(v) => `${Math.floor(v / 1000)}s`}
                 >
-                    Update rate
+                    Update rate (Restart needed)
                 </SliderInput>
 
                 <Category
