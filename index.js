@@ -15,7 +15,7 @@ module.exports = class DayNight extends (
 
         this.interval = setInterval(() => {
             this.cycle();
-        }, 5000);
+        }, 60000);
     }
 
     cycle() {
