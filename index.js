@@ -24,7 +24,7 @@ module.exports = class DayNight extends (
     }
 
     createInterval() {
-        if (this.interval) clearInterval(this.inteval);
+        if (this.interval) clearInterval(this.interval);
         this.interval = setInterval(
             () => {
                 this.cycle();
