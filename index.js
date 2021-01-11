@@ -20,9 +20,12 @@ module.exports = class DayNight extends (
             { emoji: "🌃", from: 18, to: 23 }
         ];
 
-        this.cycle();
+        createInterval();
+    }
 
-        setInterval(
+    createInterval() {
+        if (this.interval) clearInterval(this.inteval);
+        this.interval = setInterval(
             () => {
                 this.cycle();
             },
@@ -33,10 +36,9 @@ module.exports = class DayNight extends (
     cycle() {
         const date = new Date();
         const hours = date.getHours();
-        const minutes = date.getMinutes();
 
         const emoji = this.emojisCycle.find((obj) => obj.from <= hours && obj.to >= hours);
-			
+
         if (
             !this.settings.get("timeText", false) &&
             getState().activities?.[window.DiscordNative.crashReporter.getMetadata().user_id]?.[0].state === this.settings.get("statusText", "") &&
@@ -44,11 +46,11 @@ module.exports = class DayNight extends (
         ) {
             return;
         } else {
-			this.setStatus({
+            this.setStatus({
                 emojiName: emoji.emoji,
-                text: this.settings.get("timeText", false) ? `${("0" + hours).slice(-2)}:${("0" + minutes).slice(-2)}` : this.settings.get("statusText", "")
+                text: this.settings.get("timeText", false) ? date.toLocaleString("en-US", { hour: "numeric", minute: "numeric", hour12: this.settings.get("12format", false) }) : this.settings.get("statusText", "")
             });
-		}
+        }
     }
 
     setStatus({ text, emojiName, emojiId }) {
@@ -63,5 +65,6 @@ module.exports = class DayNight extends (
 
     pluginWillUnload() {
         powercord.api.settings.unregisterSettings("day-night");
+        clearInterval(this.interval);
     }
 };
