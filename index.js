@@ -20,11 +20,11 @@ module.exports = class DayNight extends (
             { emoji: "🌃", from: 18, to: 23 }
         ];
 
-        createInterval();
+        this.createInterval();
     }
 
     createInterval() {
-        if (this.interval) clearInterval(this.interval);
+        if (this.interval) this.clearInterval(this.interval);
         this.interval = setInterval(
             () => {
                 this.cycle();
