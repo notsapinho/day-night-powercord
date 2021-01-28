@@ -57,7 +57,6 @@ module.exports = class Settings extends (
                         onChange={() => {
                             this.props.toggleSetting("12format");
                             this.plugin.cycle();
-                            this.plugin.createInterval();
                         }}
                         note={"Shows the time in the 12 hour format."}
                         value={this.props.getSetting("12format", false)}
