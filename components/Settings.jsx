@@ -1,9 +1,7 @@
 const { React } = require("powercord/webpack");
 const { SliderInput, Category, TextInput, SwitchItem } = require("powercord/components/settings");
 
-module.exports = class Settings extends (
-    React.Component
-) {
+module.exports = class Settings extends React.Component {
     constructor(props) {
         super(props);
         this.plugin = powercord.pluginManager.get("day-night-powercord");

@@ -3,9 +3,7 @@ const { Plugin } = require("powercord/entities");
 const { getState } = getModule(["getStatus"], false);
 const Settings = require("./components/Settings");
 
-module.exports = class DayNight extends (
-    Plugin
-) {
+module.exports = class DayNight extends Plugin {
     async startPlugin() {
         powercord.api.settings.registerSettings("day-night", {
             category: this.entityID,
@@ -24,7 +22,7 @@ module.exports = class DayNight extends (
     }
 
     createInterval() {
-        if (this.interval) this.clearInterval(this.interval);
+        if (this.interval) clearInterval(this.interval);
         this.interval = setInterval(
             () => {
                 this.cycle();
@@ -48,7 +46,9 @@ module.exports = class DayNight extends (
         } else {
             this.setStatus({
                 emojiName: emoji.emoji,
-                text: this.settings.get("timeText", false) ? date.toLocaleString("en-US", { hour: "numeric", minute: "numeric", hour12: this.settings.get("12format", false) }) : this.settings.get("statusText", "")
+                text: this.settings.get("timeText", false)
+                    ? date.toLocaleString("en-US", { hour: "numeric", minute: "numeric", hour12: this.settings.get("12format", false) })
+                    : this.settings.get("statusText", "")
             });
         }
     }
