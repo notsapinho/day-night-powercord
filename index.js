@@ -11,12 +11,11 @@ module.exports = class DayNight extends Plugin {
             render: Settings
         });
 
-        this.emojisCycle = [
-            { emoji: "🌆", from: 6, to: 7 },
-            { emoji: "🌇", from: 8, to: 11 },
-            { emoji: "🏙️", from: 12, to: 17 },
-            { emoji: "🌃", from: 18, to: 23 }
-        ];
+        this.emojisCycle = [{ emoji: "🌆", from: 6, to: 7 }, 
+                            { emoji: "🌇", from: 8, to: 11 }, 
+                            { emoji: "🏙️", from: 12, to: 17 }, 
+                            { emoji: "🌃", from: 18, to: 23 }, 
+                            { emoji: "🌃", from: 0, to: 5 }];
 
         this.createInterval();
     }
