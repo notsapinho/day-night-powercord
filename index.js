@@ -1,4 +1,4 @@
-const { getModule } = require("powercord/webpack");
+const { getModule, React } = require("powercord/webpack");
 const { Plugin } = require("powercord/entities");
 const { getState } = getModule(["getStatus"], false);
 const Settings = require("./components/Settings");
@@ -8,14 +8,20 @@ module.exports = class DayNight extends Plugin {
         powercord.api.settings.registerSettings("day-night", {
             category: this.entityID,
             label: "Day & Night",
-            render: Settings
+            render: (props) =>
+                React.createElement(Settings, {
+                    createInterval: () => this.createInterval(),
+                    cycle: () => this.cycle(),
+                    ...props
+                })
         });
 
-        this.emojisCycle = [{ emoji: "🌆", from: 6, to: 7 }, 
-                            { emoji: "🌇", from: 8, to: 11 }, 
-                            { emoji: "🏙️", from: 12, to: 17 }, 
-                            { emoji: "🌃", from: 18, to: 23 }, 
-                            { emoji: "🌃", from: 0, to: 5 }];
+        this.emojisCycle = [
+            { emoji: "🌆", from: 6, to: 7 },
+            { emoji: "🌇", from: 8, to: 11 },
+            { emoji: "🏙️", from: 12, to: 17 },
+            { emoji: "🌃", from: 18, to: 23 }
+        ];
 
         this.createInterval();
     }
