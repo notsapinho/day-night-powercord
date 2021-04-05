@@ -1,7 +1,7 @@
 const { getModule, React } = require("powercord/webpack");
 const { Plugin } = require("powercord/entities");
 const { getState } = getModule(["getStatus"], false);
-const { updateRemoteSettings } = getModule(["updateRemoteSettings"], false);
+const updateRemoteSettings = getModule(["updateRemoteSettings"], false);
 const Settings = require("./components/Settings");
 
 module.exports = class DayNight extends Plugin {
@@ -60,7 +60,7 @@ module.exports = class DayNight extends Plugin {
     }
 
     setStatus({ text, emojiName, emojiId }) {
-        updateRemoteSettings({
+        updateRemoteSettings.updateRemoteSettings({
             customStatus: {
                 text,
                 emojiName,
